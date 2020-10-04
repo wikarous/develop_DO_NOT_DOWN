@@ -2,7 +2,7 @@ from common.numpy_fast import interp
 import numpy as np
 from cereal import log
 
-CAMERA_OFFSET = 0.062  # m from center car to camera
+CAMERA_OFFSET = 0.06  # m from center car to camera
 
 #zorrobyte
 def mean(numbers): 
