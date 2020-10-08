@@ -322,10 +322,10 @@ class CarInterface(CarInterfaceBase):
 
 
     # turning indicator alert logic
-    if (ret.leftBlinker or ret.rightBlinker or self.CC.turning_signal_timer) and ret.vEgo < LANE_CHANGE_SPEED_MIN - 1.2:
-      self.turning_indicator_alert = True
-    else:
-      self.turning_indicator_alert = False
+    #if (ret.leftBlinker or ret.rightBlinker or self.CC.turning_signal_timer):
+    #  self.turning_indicator_alert = True
+    #else:
+    #  self.turning_indicator_alert = False
 
     # LKAS button alert logic: reverse on/off
     #if not self.CS.lkas_error and self.CS.lkas_button_on != self.CS.prev_lkas_button_on:
