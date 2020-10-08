@@ -322,7 +322,7 @@ class CarInterface(CarInterfaceBase):
 
 
     # turning indicator alert logic
-    if (ret.leftBlinker or ret.rightBlinker or self.CC.turning_signal_timer): and ret.vEgo < LANE_CHANGE_SPEED_MIN - 1.2:
+    if (ret.leftBlinker or ret.rightBlinker or self.CC.turning_signal_timer) and ret.vEgo < LANE_CHANGE_SPEED_MIN - 1.2:
       self.turning_indicator_alert = True
     else:
       self.turning_indicator_alert = False
