@@ -9,7 +9,6 @@ from selfdrive.config import Conversions as CV
 from common.params import Params
 import cereal.messaging as messaging
 from cereal import log
-from selfdrive.ntune import nTune
 
 LaneChangeState = log.PathPlan.LaneChangeState
 LaneChangeDirection = log.PathPlan.LaneChangeDirection
@@ -97,7 +96,6 @@ class PathPlanner():
     self.angle_steers_des_prev = self.angle_steers_des_mpc
     #VM.update_params(sm['liveParameters'].stiffnessFactor, sm['liveParameters'].steerRatio)
     VM.update_params(sm['liveParameters'].stiffnessFactor, CP.steerRatio)
-    sr = max(self.tune.get('steerRatio'), 0.1)
     
     curvature_factor = VM.curvature_factor(v_ego)
 
@@ -217,8 +215,8 @@ class PathPlanner():
     self.LP.update_d_poly(v_ego)
 
     # account for actuation delay
-    self.cur_state = calc_states_after_delay(self.cur_state, v_ego, angle_steers - angle_offset, curvature_factor, VM.sR,
-                                             self.tune.get('steerActuatorDelay'))
+    self.cur_state = calc_states_after_delay(self.cur_state, v_ego, angle_steers - angle_offset, curvature_factor, VM.sR, CP.steerActuatorDelay)
+                                            
 
     v_ego_mpc = max(v_ego, 5.0)  # avoid mpc roughness due to low speed
     self.libmpc.run_mpc(self.cur_state, self.mpc_solution,
