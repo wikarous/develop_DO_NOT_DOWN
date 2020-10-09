@@ -78,9 +78,9 @@ class CarInterface(CarInterfaceBase):
     elif candidate == CAR.HYUNDAI_GENESIS:
       ret.mass = 2060. + STD_CARGO_KG
       ret.wheelbase = 3.01
-      ret.steerRatio = 13.8
+      ret.steerRatio = 14.0
       ret.steerActuatorDelay = 0.3
-      ret.steerRateCost = 0.6
+      ret.steerRateCost = 0.55
       ret.steerLimitTimer = 2.5
       #lqr 조향 시작
       ret.lateralTuning.init('lqr')
@@ -93,24 +93,7 @@ class CarInterface(CarInterfaceBase):
       ret.lateralTuning.lqr.l = [0.220, 0.318]
       ret.lateralTuning.lqr.dcGain = 0.00274
       #lqr 조향 종료 
-   
-      # INDI
-      # -----------------------------------------------------------------------------
-      # outer and inner are gains. Higher values = more steering
-      # timeconstant is smoothing. Higher values == more smoothing
-      # actuatoreffectiveness is how much it steers. Lower values == more steering
-      # 아래부터 인디 주석제거 위 lqr 주석처리
-      #ret.lateralTuning.init('indi')
-      #ret.lateralTuning.indi.innerLoopGain = 3.25
-      #ret.lateralTuning.indi.outerLoopGain = 2.75
-      #ret.lateralTuning.indi.timeConstant = 2.0
-      #ret.lateralTuning.indi.actuatorEffectiveness = 1.7
-
-      #ret.lateralTuning.pid.kf = 0.00005
-      #ret.lateralTuning.pid.kd = 0.003
-      #ret.lateralTuning.pid.kpBP, ret.lateralTuning.pid.kpV = [0], [0.30]
-      #ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kiV = [0], [0.02]  
-      #인디 종료. 줄 맞춤 
+  
     elif candidate in [CAR.GENESIS_G80]:
       ret.mass = 2200
       ret.wheelbase = 3.15
@@ -322,8 +305,8 @@ class CarInterface(CarInterfaceBase):
 
 
     # turning indicator alert logic
-    if (ret.leftBlinker or ret.rightBlinker or self.CC.turning_signal_timer):
-      self.turning_indicator_alert = True
+    if (ret.leftBlinker or ret.rightBlinker or self.CC.turning_signal_timer) and ret.vEgo < 16.7:
+      self.turning_indicator_alert = True 
     else:
       self.turning_indicator_alert = False
 
