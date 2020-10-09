@@ -19,10 +19,10 @@ class kyd_conf():
         self.conf['Kp'] = 0.25 #str(round(CP.lateralTuning.pid.kpV[0],3))
         write_conf = True
       if self.conf['Ki'] == "-1":
-        self.conf['Ki'] = str(round(CP.lateralTuning.pid.kiV[0],3))
+        self.conf['Ki'] = 0.01 #str(round(CP.lateralTuning.pid.kiV[0],3))
         write_conf = True
       if self.conf['Kf'] == "-1":
-        self.conf['Kf'] = str('{:f}'.format(CP.lateralTuning.pid.kf))
+        self.conf['Kf'] = 0.00005 #str('{:f}'.format(CP.lateralTuning.pid.kf))
         write_conf = True
     elif CP.lateralTuning.which() == 'indi':
       if self.conf['outerLoopGain'] == "-1":
