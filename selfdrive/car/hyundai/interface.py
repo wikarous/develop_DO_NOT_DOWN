@@ -70,14 +70,14 @@ class CarInterface(CarInterfaceBase):
         ret.wheelbase = 3.16
         ret.steerRatio = 13.0
         ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-        ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.16], [0.01]]
+        #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.16], [0.01]]
       elif candidate == CAR.GENESIS_G90L:
         ret.lateralTuning.pid.kf = 0.00005
         ret.mass = 2290. + STD_CARGO_KG
         ret.wheelbase = 3.45
         ret.steerRatio = 13.0
         ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
-        ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.16], [0.01]]
+        #ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.16], [0.01]]
       elif candidate in [CAR.K5, CAR.SONATA]:
         ret.lateralTuning.pid.kf = 0.00005
         ret.mass = 1470. + STD_CARGO_KG
