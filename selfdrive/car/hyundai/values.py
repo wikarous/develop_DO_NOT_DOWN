@@ -10,9 +10,9 @@ Ecu = car.CarParams.Ecu
 # Steer torque limits
 class SteerLimitParams:
   kyd = kyd_conf()
-  STEER_MAX = 408 #int(kyd.conf['steerMax'])   # 409 is the max, 255 is stock
-  STEER_DELTA_UP = 3 #int(kyd.conf['steerDeltaUp'])  # 3
-  STEER_DELTA_DOWN = 6 #int(kyd.conf['steerDeltaDown'])  # 7
+  STEER_MAX = int(kyd.conf['steerMax'])   # 409 is the max, 255 is stock
+  STEER_DELTA_UP = int(kyd.conf['steerDeltaUp'])  # 3
+  STEER_DELTA_DOWN = int(kyd.conf['steerDeltaDown'])  # 7
   STEER_DRIVER_ALLOWANCE = 50
   STEER_DRIVER_MULTIPLIER = 2
   STEER_DRIVER_FACTOR = 1
