@@ -38,7 +38,7 @@ class CarInterface(CarInterfaceBase):
     kyd = kyd_conf()
     tire_stiffness_factor = 1.
     ret.steerActuatorDelay = float(kyd.conf['SteerActuatorDelay'])  # 0.3
-    ret.steerRateCost = 0.5
+    ret.steerRateCost = 0.55
     ret.steerLimitTimer = float(kyd.conf['SteerLimitTimer'])  # 0.4
 
     if int(params.get('LateralControlMethod')) == 0:
@@ -62,6 +62,20 @@ class CarInterface(CarInterfaceBase):
         ret.mass = 2060. + STD_CARGO_KG
         ret.wheelbase = 3.01
         ret.steerRatio = 16.5
+        ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+        ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.16], [0.01]]
+      elif candidate == CAR.GENESIS_G90:
+        ret.lateralTuning.pid.kf = 0.00005
+        ret.mass = 2120. + STD_CARGO_KG
+        ret.wheelbase = 3.16
+        ret.steerRatio = 13.0
+        ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
+        ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.16], [0.01]]
+      elif candidate == CAR.GENESIS_G90L:
+        ret.lateralTuning.pid.kf = 0.00005
+        ret.mass = 2290. + STD_CARGO_KG
+        ret.wheelbase = 3.45
+        ret.steerRatio = 13.0
         ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.], [0.]]
         ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.16], [0.01]]
       elif candidate in [CAR.K5, CAR.SONATA]:
@@ -233,6 +247,24 @@ class CarInterface(CarInterfaceBase):
         ret.mass = 2060. + STD_CARGO_KG
         ret.wheelbase = 3.01
         ret.steerRatio = 16.5
+      elif candidate == CAR.GENESIS_G90:
+        ret.lateralTuning.init('indi')
+        ret.lateralTuning.indi.innerLoopGain = 3.0
+        ret.lateralTuning.indi.outerLoopGain = 2.0
+        ret.lateralTuning.indi.timeConstant = 1.0
+        ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+        ret.mass = 2120. + STD_CARGO_KG
+        ret.wheelbase = 3.16
+        ret.steerRatio = 13.0
+      elif candidate == CAR.GENESIS_G90L:
+        ret.lateralTuning.init('indi')
+        ret.lateralTuning.indi.innerLoopGain = 3.0
+        ret.lateralTuning.indi.outerLoopGain = 2.0
+        ret.lateralTuning.indi.timeConstant = 1.0
+        ret.lateralTuning.indi.actuatorEffectiveness = 1.5
+        ret.mass = 2290. + STD_CARGO_KG
+        ret.wheelbase = 3.45
+        ret.steerRatio = 13.0
       elif candidate in [CAR.K5, CAR.SONATA]:
         ret.lateralTuning.init('indi')
         ret.lateralTuning.indi.innerLoopGain = 3.0
@@ -452,6 +484,38 @@ class CarInterface(CarInterfaceBase):
         ret.mass = 2060. + STD_CARGO_KG
         ret.wheelbase = 3.01
         ret.steerRatio = 16.5
+      elif candidate == CAR.GENESIS_G90:
+        ret.lateralTuning.init('lqr')
+        ret.lateralTuning.lqr.scale = 1680 #Scale
+        ret.lateralTuning.lqr.ki = 0.01
+        ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268] 
+        ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05] 
+        ret.lateralTuning.lqr.c = [1., 0.] 
+        ret.lateralTuning.lqr.k = [-110.73572306, 451.22718255] 
+        ret.lateralTuning.lqr.l = [0.3233671, 0.3185757] 
+        ret.lateralTuning.lqr.dcGain = 0.002858 #0.002237852961363602
+        ret.mass = 2120. + STD_CARGO_KG
+        ret.wheelbase = 3.16
+        ret.steerLimitTimer = 2.5 #int(params.get('SteerLimitTimerAdj')) * 0.1
+        ret.steerRatio = 13.0 #int(params.get('SteerRatioAdj')) * 0.1
+        ret.steerActuatorDelay = 0.2 #int(params.get('SteerActuatorDelayAdj')) * 0.001
+        ret.steerRateCost = 0.55 #int(params.get('SteerRateCostAdj')) * 0.001
+      elif candidate == CAR.GENESIS_G90L:
+        ret.lateralTuning.init('lqr')
+        ret.lateralTuning.lqr.scale = 1680 #Scale
+        ret.lateralTuning.lqr.ki = 0.01
+        ret.lateralTuning.lqr.a = [0., 1., -0.22619643, 1.21822268] 
+        ret.lateralTuning.lqr.b = [-1.92006585e-04, 3.95603032e-05] 
+        ret.lateralTuning.lqr.c = [1., 0.] 
+        ret.lateralTuning.lqr.k = [-110.73572306, 451.22718255] 
+        ret.lateralTuning.lqr.l = [0.3233671, 0.3185757] 
+        ret.lateralTuning.lqr.dcGain = 0.002858 #0.002237852961363602
+        ret.mass = 2290. + STD_CARGO_KG
+        ret.wheelbase = 3.45
+        ret.steerLimitTimer = 2.5 #int(params.get('SteerLimitTimerAdj')) * 0.1
+        ret.steerRatio = 13.0 #int(params.get('SteerRatioAdj')) * 0.1
+        ret.steerActuatorDelay = 0.2 #int(params.get('SteerActuatorDelayAdj')) * 0.001
+        ret.steerRateCost = 0.55 #int(params.get('SteerRateCostAdj')) * 0.001
       elif candidate in [CAR.K5, CAR.SONATA]:
         ret.lateralTuning.init('lqr')
         ret.lateralTuning.lqr.scale = 1750.0
