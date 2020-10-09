@@ -37,9 +37,9 @@ class CarInterface(CarInterfaceBase):
 
     kyd = kyd_conf()
     tire_stiffness_factor = 1.
-    ret.steerActuatorDelay = float(kyd.conf['SteerActuatorDelay'])  # 0.3
+    ret.steerActuatorDelay = 0.2 #float(kyd.conf['SteerActuatorDelay'])  # 0.3
     ret.steerRateCost = 0.55
-    ret.steerLimitTimer = float(kyd.conf['SteerLimitTimer'])  # 0.4
+    ret.steerLimitTimer = 2.5 #float(kyd.conf['SteerLimitTimer'])  # 0.4
 
     if int(params.get('LateralControlMethod')) == 0:
       if candidate == CAR.SANTAFE:
@@ -509,7 +509,7 @@ class CarInterface(CarInterfaceBase):
         ret.lateralTuning.lqr.c = [1., 0.] 
         ret.lateralTuning.lqr.k = [-110.73572306, 451.22718255] 
         ret.lateralTuning.lqr.l = [0.3233671, 0.3185757] 
-        ret.lateralTuning.lqr.dcGain = 0.002858 #0.002237852961363602
+        ret.lateralTuning.lqr.dcGain = 0.0028    #58 #0.002237852961363602
         ret.mass = 2290. + STD_CARGO_KG
         ret.wheelbase = 3.45
         ret.steerLimitTimer = 2.5 #int(params.get('SteerLimitTimerAdj')) * 0.1
