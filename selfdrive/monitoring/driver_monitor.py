@@ -14,10 +14,10 @@ EventName = car.CarEvent.EventName
 #  We recommend that you do not change these numbers from the defaults.
 # ******************************************************************************************
 
-_AWARENESS_TIME = 700.  # one minute limit without user touching steering wheels make the car enter a terminal status
+_AWARENESS_TIME = 600.  # one minute limit without user touching steering wheels make the car enter a terminal status
 _AWARENESS_PRE_TIME_TILL_TERMINAL = 25.  # a first alert is issued 15s before expiration
 _AWARENESS_PROMPT_TIME_TILL_TERMINAL = 15.  # a second alert is issued 6s before start decelerating the car
-_DISTRACTED_TIME = 15.
+_DISTRACTED_TIME = 600.
 _DISTRACTED_PRE_TIME_TILL_TERMINAL = 10.
 _DISTRACTED_PROMPT_TIME_TILL_TERMINAL = 6.
 
