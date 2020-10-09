@@ -1,3 +1,4 @@
+from selfdrive.ntune import nTune
 import os
 import math
 from common.realtime import sec_since_boot, DT_MDL
@@ -9,7 +10,6 @@ from selfdrive.config import Conversions as CV
 from common.params import Params
 import cereal.messaging as messaging
 from cereal import log
-from selfdrive.ntune import nTune
 
 LaneChangeState = log.PathPlan.LaneChangeState
 LaneChangeDirection = log.PathPlan.LaneChangeDirection
@@ -17,7 +17,7 @@ LaneChangeBSM = log.PathPlan.LaneChangeBSM
 
 LOG_MPC = os.environ.get('LOG_MPC', False)
 
-LANE_CHANGE_SPEED_MIN = 50 * CV.KPH_TO_MS
+LANE_CHANGE_SPEED_MIN = 60 * CV.KPH_TO_MS
 LANE_CHANGE_TIME_MAX = 10.
 
 DESIRES = {
@@ -66,9 +66,7 @@ class PathPlanner():
     self.pre_auto_LCA_timer = 0.0
     self.lane_change_BSM = LaneChangeBSM.off
     self.prev_torque_applied = False
-    
-    self.tune = nTune(CP)
-
+    self.tune = nTune(CP) # 추가
   def setup_mpc(self):
     self.libmpc = libmpc_py.libmpc
     self.libmpc.init(MPC_COST_LAT.PATH, MPC_COST_LAT.LANE, MPC_COST_LAT.HEADING, self.steer_rate_cost)
@@ -100,8 +98,8 @@ class PathPlanner():
     #VM.update_params(sm['liveParameters'].stiffnessFactor, sm['liveParameters'].steerRatio)
     VM.update_params(sm['liveParameters'].stiffnessFactor, CP.steerRatio)
     
-    VM.sR = self.tune.get('steerRatio')
-    
+    VM.update_params(0.8, CP.steerRatio)
+    VM.sR = self.tune.get('steerRatio') # 추가
     curvature_factor = VM.curvature_factor(v_ego)
 
     self.LP.parse_model(sm['model'])
@@ -220,9 +218,7 @@ class PathPlanner():
     self.LP.update_d_poly(v_ego)
 
     # account for actuation delay
-    self.cur_state = calc_states_after_delay(self.cur_state, v_ego, angle_steers - angle_offset, curvature_factor, VM.sR,
-                                             self.tune.get('steerActuatorDelay'))
-                                            
+    self.cur_state = calc_states_after_delay(self.cur_state, v_ego, angle_steers - angle_offset, curvature_factor, VM.sR, self.tune.get('steerActuatorDelay'))
 
     v_ego_mpc = max(v_ego, 5.0)  # avoid mpc roughness due to low speed
     self.libmpc.run_mpc(self.cur_state, self.mpc_solution,
