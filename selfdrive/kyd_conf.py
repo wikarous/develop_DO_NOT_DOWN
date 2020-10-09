@@ -16,7 +16,7 @@ class kyd_conf():
     # only fetch Kp, Ki, Kf sR and sRC from interface.py if it's a PID controlled car
     if CP.lateralTuning.which() == 'pid':
       if self.conf['Kp'] == "-1":
-        self.conf['Kp'] = str(round(CP.lateralTuning.pid.kpV[0],3))
+        self.conf['Kp'] = 0.25 #str(round(CP.lateralTuning.pid.kpV[0],3))
         write_conf = True
       if self.conf['Ki'] == "-1":
         self.conf['Ki'] = str(round(CP.lateralTuning.pid.kiV[0],3))
