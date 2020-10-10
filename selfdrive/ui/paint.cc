@@ -704,24 +704,24 @@ static void bb_ui_draw_L_Extra(UIState *s)
     ///////////
     // LQR
 
-    auto lqr = scene->controls_state.getLateralControlState().getLqrState();
+//    auto lqr = scene->controls_state.getLateralControlState().getLqrState();
 
-    snprintf(str, sizeof(str), "I: %.3f", lqr.getI());
-    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+//    snprintf(str, sizeof(str), "I: %.3f", lqr.getI());
+//    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
-    y += height;
-    snprintf(str, sizeof(str), "LQR: %.3f", lqr.getLqrOutput());
-    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+//    y += height;
+//    snprintf(str, sizeof(str), "LQR: %.3f", lqr.getLqrOutput());
+//    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
-    y += height;
-    snprintf(str, sizeof(str), "O: %.3f, %.0f", lqr.getOutput(), scene->controls_state.getApplySteer());
-    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+//    y += height;
+//    snprintf(str, sizeof(str), "O: %.3f, %.0f", lqr.getOutput(), scene->controls_state.getApplySteer());
+//    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
-    y += height;
-    snprintf(str, sizeof(str), "ACC: %.3f, %.3f",
-                scene->car_control.getActuators().getGas() - scene->car_control.getActuators().getBrake(),
-                scene->controls_state.getApplyAccel());
-    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+//    y += height;
+//    snprintf(str, sizeof(str), "ACC: %.3f, %.3f",
+//                scene->car_control.getActuators().getGas() - scene->car_control.getActuators().getBrake(),
+//                scene->controls_state.getApplyAccel());
+//    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
     //y += height;
     //snprintf(str, sizeof(str), "ST: %.3f", scene->car_state.getSteeringTorque());
@@ -736,13 +736,13 @@ static void bb_ui_draw_L_Extra(UIState *s)
     //        scene->liveParams.getAngleOffsetAverage());
     //ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
-    y += height;
-    snprintf(str, sizeof(str), "SR: %.2f", scene->path_plan.getSteerRatio());
-    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+//    y += height;
+//    snprintf(str, sizeof(str), "SR: %.2f", scene->path_plan.getSteerRatio());
+//    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
-    y += height;
-    snprintf(str, sizeof(str), "Lane: %.2f, %.2f", scene->path_plan.getLProb(), scene->path_plan.getRProb());
-    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+//    y += height;
+//    snprintf(str, sizeof(str), "Lane: %.2f, %.2f", scene->path_plan.getLProb(), scene->path_plan.getRProb());
+//    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 }
 
 
@@ -1115,11 +1115,11 @@ void ui_nvg_init(UIState *s) {
 
   assert(s->vg);
 
-  s->font_sans_regular = nvgCreateFont(s->vg, "sans-regular", "../assets/fonts/opensans_regular.ttf");
+  s->font_sans_regular = nvgCreateFont(s->vg, "sans-regular", "../assets/fonts/NanumGothic.ttf");
   assert(s->font_sans_regular >= 0);
-  s->font_sans_semibold = nvgCreateFont(s->vg, "sans-semibold", "../assets/fonts/opensans_semibold.ttf");
+  s->font_sans_semibold = nvgCreateFont(s->vg, "sans-semibold", "../assets/fonts/NanumGothicBold.ttf");
   assert(s->font_sans_semibold >= 0);
-  s->font_sans_bold = nvgCreateFont(s->vg, "sans-bold", "../assets/fonts/opensans_bold.ttf");
+  s->font_sans_bold = nvgCreateFont(s->vg, "sans-bold", "../assets/fonts/NanumGothicExtraBold.ttf");
   assert(s->font_sans_bold >= 0);
 
   s->img_wheel = nvgCreateImage(s->vg, "../assets/img_chffr_wheel.png", 1);
