@@ -1,4 +1,4 @@
-//
+size * 0.9f;//
 // Copyright (c) 2013 Mikko Mononen memon@inside.org
 //
 // This software is provided 'as-is', without any express or implied
@@ -2292,7 +2292,7 @@ int nvgAddFallbackFont(NVGcontext* ctx, const char* baseFont, const char* fallba
 void nvgFontSize(NVGcontext* ctx, float size)
 {
 	NVGstate* state = nvg__getState(ctx);
-	state->fontSize = size;
+	state->fontSize = size * 0.9f;
 }
 
 void nvgFontBlur(NVGcontext* ctx, float blur)
