@@ -342,15 +342,6 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
 
   EventName.gasPressed: {
     ET.PRE_ENABLE: Alert(
-      "가속패달사용시 오픈파일럿은 브레이크를 사용하지않습니다",
-      AlertStatus.userPrompt, AlertSize.mid,
-      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.chimePrompt, 1., 2., 3.),
-  },
-
-  # ********** events only containing alerts that display while engaged **********
-
-  EventName.gasPressed: {
-    ET.PRE_ENABLE: Alert(
       "openpilot will not brake while gas pressed",
       "",
       AlertStatus.normal, AlertSize.small,
