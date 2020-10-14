@@ -719,18 +719,18 @@ static void bb_ui_draw_L_Extra(UIState *s)
     ///////////
     // LQR
 
-    auto lqr = scene->controls_state.getLateralControlState().getLqrState();
+//    auto lqr = scene->controls_state.getLateralControlState().getLqrState();
 
-    snprintf(str, sizeof(str), "I: %.3f", lqr.getI());
-    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+//    snprintf(str, sizeof(str), "I: %.3f", lqr.getI());
+//    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
-    y += height;
-    snprintf(str, sizeof(str), "LQR: %.3f", lqr.getLqrOutput());
-    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+//    y += height;
+//    snprintf(str, sizeof(str), "LQR: %.3f", lqr.getLqrOutput());
+//    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
-    y += height;
-    snprintf(str, sizeof(str), "O: %.3f, %.0f", lqr.getOutput(), scene->controls_state.getApplySteer());
-    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+//    y += height;
+//    snprintf(str, sizeof(str), "O: %.3f, %.0f", lqr.getOutput(), scene->controls_state.getApplySteer());
+//    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
     //y += height;
     //snprintf(str, sizeof(str), "ST: %.3f", scene->car_state.getSteeringTorque());
@@ -745,13 +745,13 @@ static void bb_ui_draw_L_Extra(UIState *s)
     //        scene->liveParams.getAngleOffsetAverage());
     //ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
-    y += height;
-    snprintf(str, sizeof(str), "SR: %.2f", scene->path_plan.getSteerRatio());
-    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+//    y += height;
+//    snprintf(str, sizeof(str), "SR: %.2f", scene->path_plan.getSteerRatio());
+//    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 
-    y += height;
-    snprintf(str, sizeof(str), "Lane: %.2f, %.2f", scene->path_plan.getLProb(), scene->path_plan.getRProb());
-    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
+//    y += height;
+//    snprintf(str, sizeof(str), "Lane: %.2f, %.2f", scene->path_plan.getLProb(), scene->path_plan.getRProb());
+//    ui_draw_text(s->vg, text_x, y, str, 25 * 2.5, COLOR_WHITE_ALPHA(200), s->font_sans_regular);
 }
 
 
