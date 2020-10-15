@@ -43,10 +43,10 @@ def calc_d_poly(l_poly, r_poly, p_poly, l_prob, r_prob, lane_width, v_ego):
   lr_prob = l_prob + r_prob - l_prob * r_prob
 
   # neokii
-  if lr_prob > 0.7:
-    lr_prob = min(lr_prob * 1.33, 1.0)
+  if lr_prob > 0.68:
+    lr_prob = min(lr_prob * 1.34, 1.0)
   elif lr_prob > 0.46:
-    lr_prob = lr_prob * 1.25
+    lr_prob = lr_prob * 1.27
 
   d_poly_lane = (l_prob * path_from_left_lane + r_prob * path_from_right_lane) / (l_prob + r_prob + 0.0001)
   return lr_prob * d_poly_lane + (1.0 - lr_prob) * p_poly
