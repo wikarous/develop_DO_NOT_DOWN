@@ -13,7 +13,7 @@ from common.params import Params
 import cereal.messaging as messaging
 from cereal import log
 
-AUTO_LCA_START_TIME = 2.0
+AUTO_LCA_START_TIME = 0.5
 
 LaneChangeState = log.PathPlan.LaneChangeState
 LaneChangeDirection = log.PathPlan.LaneChangeDirection
